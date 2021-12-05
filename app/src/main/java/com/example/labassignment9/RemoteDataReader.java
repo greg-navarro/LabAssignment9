@@ -1,9 +1,5 @@
 package com.example.labassignment9;
 
-//public class RemoteDataReader {
-//}
-
-
 import android.util.Log;
 
 import java.io.BufferedReader;
