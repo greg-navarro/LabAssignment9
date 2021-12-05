@@ -1,22 +1,14 @@
 package com.example.labassignment9;
 
-//public class MainActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//    }
-//}
-
-//package com.example.webservices;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -30,9 +22,21 @@ public class MainActivity extends AppCompatActivity {
     private String city = "London,UK";
     private String key = "772253c413f7ed5ca045586d1b2b53bf";
     String json;
+
+    // views
+    public TextView output;
+    public EditText cityEditText;
+    public EditText stateEditText;
+    private Button getButton;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // bind views
+        output = (TextView) findViewById(R.id.WeatherDataTextView);
+        cityEditText = (EditText) findViewById(R.id.editTextCity);
+        stateEditText = (EditText) findViewById(R.id.editTextState);
+        getButton = (Button) findViewById(R.id.button);
         Log.d("MainActivity","Main Activity - Entering onCreate");
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
@@ -58,5 +62,5 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-    }
+    } // end oncreate
 }
