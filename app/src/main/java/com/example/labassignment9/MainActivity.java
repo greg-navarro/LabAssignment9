@@ -98,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         TemperatureParser parser = new TemperatureParser( json );
-                        Log.d("MainActivity", String.valueOf(parser.getTemperatureK( ))+ DEGREE+"K success bitch!");
+                        String out = String.valueOf(parser.getTemperatureK( ))+ DEGREE+"K";
+                        output.setText("Current temp: " + out);
+                        Log.d("MainActivity", out);
                     }
                 });
             }
