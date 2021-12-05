@@ -23,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private String city = "London,UK";
     private String key = "772253c413f7ed5ca045586d1b2b53bf";
     String json;
-    private double lastTemp;
-    private String postfix = "K";
+    private double lastTempC;
+    private double lastTempF;
+    private String postfix = "C";
 
     // views
     public TextView output;
@@ -63,13 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        String out;
                         if (postfix.equals("C")) {
                             postfix = "F";
+                            out = String.valueOf(lastTempF)+ DEGREE+postfix;
                         } else {
                             postfix = "C";
+                            out = String.valueOf(lastTempC)+ DEGREE+postfix;
                         }
-
-                        String out = String.valueOf(lastTemp)+ DEGREE+postfix;
                         output.setText("Current temp: " + out);
                     }
                 });
@@ -93,12 +95,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         TemperatureParser parser = new TemperatureParser( json );
+                        lastTempC = parser.getTemperatureC();
+                        lastTempF = parser.getTemperatureF();
+                        String out;
                         if (postfix.equals("C")) {
-                            lastTemp = parser.getTemperatureC();
+                             out = String.valueOf(lastTempC)+ DEGREE+postfix;
                         } else {
-                            lastTemp = parser.getTemperatureF();
+                            out  = String.valueOf(lastTempF)+ DEGREE+postfix;
                         }
-                        String out = String.valueOf(lastTemp)+ DEGREE+postfix;
                         output.setText("Current temp: " + out);
                         Log.d("MainActivity", out);
                     }
@@ -126,12 +130,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         TemperatureParser parser = new TemperatureParser( json );
+                        lastTempC = parser.getTemperatureC();
+                        lastTempF = parser.getTemperatureF();
+                        String out;
                         if (postfix.equals("C")) {
-                            lastTemp = parser.getTemperatureC();
+                            out = String.valueOf(lastTempC)+ DEGREE+postfix;
                         } else {
-                            lastTemp = parser.getTemperatureF();
+                            out = String.valueOf(lastTempF)+ DEGREE+postfix;
                         }
-                        String out = String.valueOf(lastTemp)+ DEGREE+postfix;
                         output.setText("Current temp: " + out);
                         Log.d("MainActivity", out);
                     }
