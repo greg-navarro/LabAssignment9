@@ -36,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
         // bind views
         output = (TextView) findViewById(R.id.WeatherDataTextView);
         cityEditText = (EditText) findViewById(R.id.editTextCity);
+        cityEditText.setText("London");
+
         stateEditText = (EditText) findViewById(R.id.editTextState);
+        stateEditText.setText("UK");
         getButton = (Button) findViewById(R.id.button);
 
         getButton.setOnClickListener(
@@ -70,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-
                         TemperatureParser parser = new TemperatureParser( json );
-                        Log.d("MainActivity", String.valueOf(parser.getTemperatureK( ))+ DEGREE+"K");
+                        String out = String.valueOf(parser.getTemperatureK( ))+ DEGREE+"K";
+                        output.setText("Current temp: " + out);
+                        Log.d("MainActivity", out);
                     }
                 });
             }
